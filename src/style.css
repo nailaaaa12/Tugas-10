@@ -1,0 +1,7 @@
+.content {
+  flex-grow: 1;
+  padding: 40px; /* ini buat jaga jarak isi konten */
+  margin-left: 240px;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+}
