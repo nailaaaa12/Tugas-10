@@ -1,25 +1,28 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import Beranda from '../views/Beranda.vue'
-import AkunSaya from '../views/AkunSaya.vue'
-import Booking from '../views/Booking.vue'
-import CariLapangan from '../views/CariLapangan.vue'
-import HistoryBooking from '../views/HistoryBooking.vue'
-import KonfirmasiDanBayar from '../views/KonfirmasiDanBayar.vue'
-import PilihLapangan from '../views/PilihLapangan.vue'
-import PilihTanggaldanJam from '../views/PilihTanggaldanJam.vue'
-import Riwayat from '../views/Riwayat.vue'
+import Home from '../views/HomeView.vue'
+import Booking from '../views/BookingView.vue'
+import Login from '../views/LoginView.vue'
+import NotFound from '../views/NotFound.vue'
+
+import AdminLayout from '../layouts/AdminLayout.vue'
+import PermintaanBooking from '../views/admin/PermintaanBooking.vue'
+import KelolaLapangan from '../views/admin/kelolaLapangan.vue'
 
 const routes = [
-  { path: '/', component: Beranda },
-  { path: '/akun-saya', component: AkunSaya },
-  { path: '/booking', component: Booking },
-  { path: '/cari-lapangan', component: CariLapangan },
-  { path: '/history-booking', component: HistoryBooking },
-  { path: '/konfirmasi-bayar', component: KonfirmasiDanBayar },
-  { path: '/pilih-lapangan', component: PilihLapangan },
-  { path: '/pilih-tanggal-jam', component: PilihTanggaldanJam },
-  { path: '/riwayat', component: Riwayat },
+  { path: '/', name: 'Home', component: Home },
+  { path: '/booking', name: 'Booking', component: Booking },
+  { path: '/login', name: 'Login', component: Login },
+  {
+    path: '/admin',
+    component: AdminLayout,
+    children: [
+      { path: 'permintaan', name: 'PermintaanBooking', component: PermintaanBooking },
+      { path: 'lapangan', name: 'KelolaLapangan', component: KelolaLapangan },
+      { path: '', redirect: '/admin/permintaan' }
+    ]
+  },
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound }
 ]
 
 const router = createRouter({
